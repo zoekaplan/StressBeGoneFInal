@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">StressBeGone</string>
+    <string name="title_activity_first_question">FirstQuestion</string>
+    <string name="title_activity_second_answer">SecondAnswer</string>
+    <string name="title_activity_third_question">ThirdQuestion</string>
+</resources>
