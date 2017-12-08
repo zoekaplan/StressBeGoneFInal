@@ -96,7 +96,7 @@
         app:srcCompat="@drawable/other_symptoms_graphic" />
 
     <ImageView
-        android:id="@+id/imageView_yes"
+        android:id="@+id/imageView_yess"
         android:layout_width="84dp"
         android:layout_height="56dp"
         android:layout_marginBottom="8dp"

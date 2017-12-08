@@ -38,7 +38,7 @@ private ImageView yesButton, noButton;
         noHere = (Button) findViewById(R.id.button_no_click_here);
         waitHere = (Button) findViewById(R.id.button_wait_click_here);
 
-        yesButton = (ImageView) findViewById(R.id.imageView_yes);
+        yesButton = (ImageView) findViewById(R.id.imageView_yess);
         noButton = (ImageView) findViewById(R.id.imageView_no);
     }
 
@@ -50,7 +50,7 @@ private ImageView yesButton, noButton;
                 Intent i = new Intent(SecondAnswer.this, FeelBetter.class);
                 startActivity(i);
                 break;
-            case R.id.imageView_yes:
+            case R.id.imageView_yess:
                 Intent x = new Intent(SecondAnswer.this, ThirdQuestion.class);
                 startActivity(x);
                 break;

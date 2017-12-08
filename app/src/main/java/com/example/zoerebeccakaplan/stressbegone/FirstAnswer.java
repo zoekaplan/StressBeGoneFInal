@@ -48,7 +48,7 @@ public class FirstAnswer extends AppCompatActivity implements View.OnClickListen
     }
 
     private void wireWidgets() {
-        yesButton = (ImageView) findViewById(R.id.imageView_yes);
+        yesButton = (ImageView) findViewById(R.id.imageView_yess);
         noButton = (ImageView) findViewById(R.id.imageView_no);
         answer = (ImageView) findViewById(R.id.imageView_answer);
     }
@@ -60,7 +60,7 @@ public class FirstAnswer extends AppCompatActivity implements View.OnClickListen
                 Intent i = new Intent(FirstAnswer.this, FeelBetter.class);
                 startActivity(i);
                 break;
-            case R.id.imageView_yes:
+            case R.id.imageView_yess:
                 i = new Intent(FirstAnswer.this, SecondQuestion.class);
                 startActivity(i);
                 break;

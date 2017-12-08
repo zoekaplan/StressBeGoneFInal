@@ -30,7 +30,10 @@
         <activity
             android:name=".ThirdQuestion"
             android:label="@string/title_activity_third_question"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".ThirdAnswer" />
+        <activity android:name=".FourthQuestion" />
+        <activity android:name=".QuestionActivity"></activity>
     </application>
 
 </manifest>

@@ -25,7 +25,7 @@
         app:srcCompat="@drawable/headache_question" />
 
     <ImageView
-        android:id="@+id/imageView_yes"
+        android:id="@+id/imageView_yess"
         android:layout_width="162dp"
         android:layout_height="72dp"
         android:layout_marginBottom="8dp"

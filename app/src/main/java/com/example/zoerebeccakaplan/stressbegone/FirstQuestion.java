@@ -26,7 +26,7 @@ public class FirstQuestion extends AppCompatActivity implements View.OnClickList
 
     private void wireWidgets() {
         noButton = (ImageView) findViewById(R.id.imageView_no);
-        yesButton = (ImageView) findViewById(R.id.imageView_yes);
+        yesButton = (ImageView) findViewById(R.id.imageView_yess);
     }
 
     private void setOnClickListeners() {
@@ -42,7 +42,7 @@ public class FirstQuestion extends AppCompatActivity implements View.OnClickList
                 Intent i = new Intent(FirstQuestion.this, SecondQuestion.class);
                 startActivity(i);
                 break;
-            case R.id.imageView_yes:
+            case R.id.imageView_yess:
                 Intent x = new Intent(FirstQuestion.this, FirstAnswer.class);
                 startActivity(x);
                 break;
