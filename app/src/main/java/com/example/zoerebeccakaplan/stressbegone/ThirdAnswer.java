@@ -1,5 +1,6 @@
 package com.example.zoerebeccakaplan.stressbegone;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -30,6 +31,15 @@ public class ThirdAnswer extends AppCompatActivity implements View.OnClickListen
 
     @Override
     public void onClick(View view) {
-        
+        switch (view.getId()){
+            case R.id.imageView_yes:
+                Intent i = new Intent(ThirdAnswer.this, FourthQuestion.class);
+                startActivity(i);
+                break;
+            case R.id.imageView_no:
+                i = new Intent(ThirdAnswer.this, FeelBetter.class);
+                startActivity(i);
+                break;
+        }
     }
 }

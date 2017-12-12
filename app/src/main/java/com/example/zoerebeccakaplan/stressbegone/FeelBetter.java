@@ -5,10 +5,12 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 
 public class FeelBetter extends AppCompatActivity implements View.OnClickListener {
 
     private Button startOver;
+    private ImageView happyGif;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,11 +19,12 @@ public class FeelBetter extends AppCompatActivity implements View.OnClickListene
 
         wireWidgets();
         setOnCLickListeners();
-    }
 
+    }
 
     private void wireWidgets() {
         startOver = (Button) findViewById(R.id.button_start_over);
+        happyGif = (ImageView) findViewById(R.id.imageView_happy);
     }
 
     private void setOnCLickListeners() {

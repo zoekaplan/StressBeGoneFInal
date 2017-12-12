@@ -4,53 +4,52 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.zoerebeccakaplan.stressbegone.FourthQuestion">
+    tools:context="com.example.zoerebeccakaplan.stressbegone.FifthQuestion">
 
     <ImageView
-        android:id="@+id/imageView_stomach_question"
-        android:layout_width="355dp"
-        android:layout_height="337dp"
+        android:id="@+id/imageView_anxiety_attack"
+        android:layout_width="350dp"
+        android:layout_height="289dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.538"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.177"
-        app:srcCompat="@drawable/stomach_question" />
+        app:layout_constraintVertical_bias="0.038"
+        app:srcCompat="@drawable/anxiety_attack_question" />
 
     <ImageView
         android:id="@+id/imageView_yes"
-        android:layout_width="153dp"
-        android:layout_height="136dp"
+        android:layout_width="161dp"
+        android:layout_height="134dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.09"
+        app:layout_constraintHorizontal_bias="0.094"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.982"
+        app:layout_constraintVertical_bias="0.976"
         app:srcCompat="@drawable/yes_button_graphic" />
 
     <ImageView
         android:id="@+id/imageView_no"
-        android:layout_width="163dp"
-        android:layout_height="135dp"
+        android:layout_width="161dp"
+        android:layout_height="134dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.922"
+        app:layout_constraintHorizontal_bias="0.896"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.982"
+        app:layout_constraintVertical_bias="0.977"
         app:srcCompat="@drawable/no_button_graphic" />
 </android.support.constraint.ConstraintLayout>
