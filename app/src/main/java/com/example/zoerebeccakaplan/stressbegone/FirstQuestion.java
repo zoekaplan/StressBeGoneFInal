@@ -2,15 +2,20 @@ package com.example.zoerebeccakaplan.stressbegone;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ToggleButton;
 
-public class FirstQuestion extends AppCompatActivity implements View.OnClickListener {
+import java.util.Locale;
 
-    private ImageView noButton;
-    private ImageView yesButton;
+public class FirstQuestion extends AppCompatActivity implements View.OnClickListener, TextToSpeech.OnInitListener {
+
+    private ImageView noButton, yesButton;
+    private ToggleButton speak;
+    private TextToSpeech tts;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +32,10 @@ public class FirstQuestion extends AppCompatActivity implements View.OnClickList
     private void wireWidgets() {
         noButton = (ImageView) findViewById(R.id.imageView_no);
         yesButton = (ImageView) findViewById(R.id.imageView_yess);
+
+        speak = (ToggleButton) findViewById(R.id.toggleButton_speech);
+
+        tts = new TextToSpeech(this, this);
     }
 
     private void setOnClickListeners() {
@@ -47,5 +56,15 @@ public class FirstQuestion extends AppCompatActivity implements View.OnClickList
                 startActivity(x);
                 break;
         }
+    }
+
+    @Override
+    public void onInit(int i) {
+        tts.setLanguage(Locale.UK);
+        tts.speak("Do you have a headache?", i, null);
+    }
+
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
     }
 }

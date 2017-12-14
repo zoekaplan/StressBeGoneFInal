@@ -10,6 +10,7 @@ public class FifthQuestion extends AppCompatActivity implements View.OnClickList
 
     private ImageView yesButton, noButton;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +28,8 @@ public class FifthQuestion extends AppCompatActivity implements View.OnClickList
     private void wireWidgets() {
         yesButton = (ImageView) findViewById(R.id.imageView_yes);
         noButton = (ImageView) findViewById(R.id.imageView_no);
+
+
     }
 
     @Override

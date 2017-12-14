@@ -2,17 +2,22 @@ package com.example.zoerebeccakaplan.stressbegone;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.ToggleButton;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 
-
-public class FirstAnswer extends AppCompatActivity implements View.OnClickListener {
+public class FirstAnswer extends AppCompatActivity implements View.OnClickListener, TextToSpeech.OnInitListener {
     private ImageView answer, yesButton, noButton;
     private ArrayList<Integer> answerOpt;
+    private ToggleButton speak;
+    private TextToSpeech tts;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +29,14 @@ public class FirstAnswer extends AppCompatActivity implements View.OnClickListen
         setOnClickListeners();
         answerOptions();
         answerSelect();
+
+        speak.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    onInit(0);
+                }
+            }
+        });
     }
 
 
@@ -51,6 +64,9 @@ public class FirstAnswer extends AppCompatActivity implements View.OnClickListen
         yesButton = (ImageView) findViewById(R.id.imageView_yess);
         noButton = (ImageView) findViewById(R.id.imageView_no);
         answer = (ImageView) findViewById(R.id.imageView_answer);
+
+        speak = (ToggleButton) findViewById(R.id.toggleButton_speak);
+        tts = new TextToSpeech(this, this);
     }
 
     @Override
@@ -65,6 +81,18 @@ public class FirstAnswer extends AppCompatActivity implements View.OnClickListen
                 startActivity(i);
                 break;
         }
+
+    }
+
+    @Override
+    public void onInit(int i) {
+        tts.setLanguage(Locale.UK);
+        tts.speak("Take an advil.", i, null);
+
+    }
+
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
 
     }
 }
