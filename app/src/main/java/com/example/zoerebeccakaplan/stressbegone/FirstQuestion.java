@@ -6,12 +6,13 @@ import android.speech.tts.TextToSpeech;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.ToggleButton;
 
 import java.util.Locale;
 
-public class FirstQuestion extends AppCompatActivity implements View.OnClickListener, TextToSpeech.OnInitListener {
+public class FirstQuestion extends AppCompatActivity implements View.OnClickListener {
 
     private ImageView noButton, yesButton;
     private ToggleButton speak;
@@ -26,6 +27,7 @@ public class FirstQuestion extends AppCompatActivity implements View.OnClickList
 
         wireWidgets();
         setOnClickListeners();
+        getSharedPreferences("hi", 0);
 
     }
 
@@ -35,12 +37,25 @@ public class FirstQuestion extends AppCompatActivity implements View.OnClickList
 
         speak = (ToggleButton) findViewById(R.id.toggleButton_speech);
 
-        tts = new TextToSpeech(this, this);
+        tts = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int i) {
+                    tts.setLanguage(Locale.UK);
+            }
+        });
     }
 
     private void setOnClickListeners() {
         yesButton.setOnClickListener(this);
         noButton.setOnClickListener(this);
+
+        speak.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    tts.speak("Do you have a headache?", 0, null);
+                }
+            }
+        });
     }
 
     @Override
@@ -58,13 +73,6 @@ public class FirstQuestion extends AppCompatActivity implements View.OnClickList
         }
     }
 
-    @Override
-    public void onInit(int i) {
-        tts.setLanguage(Locale.UK);
-        tts.speak("Do you have a headache?", i, null);
-    }
 
-    @Override
-    public void onPointerCaptureChanged(boolean hasCapture) {
-    }
+
 }

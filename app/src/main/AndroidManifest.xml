@@ -33,7 +33,6 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".ThirdAnswer" />
         <activity android:name=".FourthQuestion" />
-        <activity android:name=".QuestionActivity" />
         <activity android:name=".FourthAnswer" />
         <activity android:name=".FifthQuestion" />
         <activity android:name=".FifthAnswer" />

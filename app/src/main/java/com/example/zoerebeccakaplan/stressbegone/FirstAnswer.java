@@ -30,13 +30,6 @@ public class FirstAnswer extends AppCompatActivity implements View.OnClickListen
         answerOptions();
         answerSelect();
 
-        speak.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    onInit(0);
-                }
-            }
-        });
     }
 
 
@@ -58,7 +51,16 @@ public class FirstAnswer extends AppCompatActivity implements View.OnClickListen
     private void setOnClickListeners() {
         yesButton.setOnClickListener(this);
         noButton.setOnClickListener(this);
+
+        speak.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    onInit(0);
+                }
+            }
+        });
     }
+
 
     private void wireWidgets() {
         yesButton = (ImageView) findViewById(R.id.imageView_yess);

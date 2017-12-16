@@ -61,6 +61,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Speak"
+        android:textOff="Speech: Off"
+        android:textOn="Speech: On"
         tools:layout_editor_absoluteX="5dp"
         tools:layout_editor_absoluteY="8dp" />
 

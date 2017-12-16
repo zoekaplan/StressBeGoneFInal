@@ -3,4 +3,5 @@
     <string name="title_activity_first_question">FirstQuestion</string>
     <string name="title_activity_second_answer">SecondAnswer</string>
     <string name="title_activity_third_question">ThirdQuestion</string>
+    <string name="preference_file_key">hi</string>
 </resources>
