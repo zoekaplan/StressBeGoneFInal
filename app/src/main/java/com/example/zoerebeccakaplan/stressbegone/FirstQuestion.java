@@ -1,7 +1,10 @@
 package com.example.zoerebeccakaplan.stressbegone;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.speech.tts.TextToSpeech;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -17,6 +20,8 @@ public class FirstQuestion extends AppCompatActivity implements View.OnClickList
     private ImageView noButton, yesButton;
     private ToggleButton speak;
     private TextToSpeech tts;
+    private SharedPreferences sharedPref;
+    private SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +32,28 @@ public class FirstQuestion extends AppCompatActivity implements View.OnClickList
 
         wireWidgets();
         setOnClickListeners();
-        getSharedPreferences("hi", 0);
+
+        sharedPref = this.getSharedPreferences(
+                getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+        editor = sharedPref.edit();
+
+        speak.setChecked(sharedPref.getBoolean("hi", false));
+        if(speak.isChecked()){
+            CountDownTimer c = new CountDownTimer(1000,1000) {
+                @Override
+                public void onTick(long l) {
+
+                }
+
+                @Override
+                public void onFinish() {
+                    tts.speak("Do you have a headache?", 0, null);
+                }
+            };
+            c.start();
+
+        }
+
 
     }
 
@@ -52,8 +78,10 @@ public class FirstQuestion extends AppCompatActivity implements View.OnClickList
         speak.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    tts.speak("Do you have a headache?", 0, null);
+                    editor.putBoolean("hi", true);
+                    editor.commit();
                 }
+
             }
         });
     }

@@ -36,7 +36,9 @@
         <activity android:name=".FourthAnswer" />
         <activity android:name=".FifthQuestion" />
         <activity android:name=".FifthAnswer" />
-        <activity android:name=".SixthQuestion"></activity>
+        <activity android:name=".SixthQuestion" />
+        <activity android:name=".SixthAnswer" />
+        <activity android:name=".SeventhQuestion"></activity>
     </application>
 
 </manifest>

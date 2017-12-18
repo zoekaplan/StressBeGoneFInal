@@ -1,16 +1,27 @@
 package com.example.zoerebeccakaplan.stressbegone;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.CountDownTimer;
+import android.speech.tts.TextToSpeech;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
+import android.widget.CompoundButton;
+import android.widget.ToggleButton;
+
+import java.util.Locale;
 
 public class FeelBetter extends AppCompatActivity implements View.OnClickListener {
 
     private Button startOver;
-    private ImageView happyGif;
+    private TextToSpeech tts;
+    private ToggleButton speak;
+    private SharedPreferences sharedPref;
+    private SharedPreferences.Editor editor;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,15 +31,52 @@ public class FeelBetter extends AppCompatActivity implements View.OnClickListene
         wireWidgets();
         setOnCLickListeners();
 
+        sharedPref = this.getSharedPreferences(
+                getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+        editor = sharedPref.edit();
+
+        speak.setChecked(sharedPref.getBoolean("hi", false));
+        if(speak.isChecked()) {
+            CountDownTimer c = new CountDownTimer(1000, 1000) {
+                @Override
+                public void onTick(long l) {
+
+                }
+
+                @Override
+                public void onFinish() {
+                    tts.speak("Feel Better!", 0, null);
+                }
+            };
+            c.start();
+        }
     }
 
     private void wireWidgets() {
         startOver = (Button) findViewById(R.id.button_start_over);
-        happyGif = (ImageView) findViewById(R.id.imageView_happy);
+
+        speak = (ToggleButton) findViewById(R.id.toggleButton_speech);
+
+        tts = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int i) {
+                tts.setLanguage(Locale.UK);
+            }
+        });
     }
+
 
     private void setOnCLickListeners() {
         startOver.setOnClickListener(this);
+
+        speak.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    editor.putBoolean("hi", true);
+                    editor.commit();
+                }
+            }
+        });
     }
 
     @Override

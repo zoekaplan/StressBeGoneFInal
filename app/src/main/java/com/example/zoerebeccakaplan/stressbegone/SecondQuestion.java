@@ -1,7 +1,10 @@
 package com.example.zoerebeccakaplan.stressbegone;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.speech.tts.TextToSpeech;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -11,11 +14,14 @@ import android.widget.ToggleButton;
 
 import java.util.Locale;
 
-public class SecondQuestion extends AppCompatActivity implements View.OnClickListener, TextToSpeech.OnInitListener {
+public class SecondQuestion extends AppCompatActivity implements View.OnClickListener{
 
     private ImageView yesButton, noButton;
     private ToggleButton speak;
     private TextToSpeech tts;
+    private SharedPreferences sharedPref;
+    private SharedPreferences.Editor editor;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +30,27 @@ public class SecondQuestion extends AppCompatActivity implements View.OnClickLis
 
         wireWidgets();
         setOnClickListeners();
+
+        sharedPref = this.getSharedPreferences(
+                getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+        editor = sharedPref.edit();
+
+        speak.setChecked(sharedPref.getBoolean("hi", false));
+        if(speak.isChecked()) {
+            CountDownTimer c = new CountDownTimer(1000, 1000) {
+                @Override
+                public void onTick(long l) {
+
+                }
+
+                @Override
+                public void onFinish() {
+                    tts.speak("Are you feeling fatigued?",
+                            0, null);
+                }
+            };
+            c.start();
+        }
     }
 
     private void setOnClickListeners() {
@@ -33,7 +60,8 @@ public class SecondQuestion extends AppCompatActivity implements View.OnClickLis
         speak.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    onInit(0);
+                    editor.putBoolean("hi", true);
+                    editor.commit();
                 }
             }
         });
@@ -45,7 +73,12 @@ public class SecondQuestion extends AppCompatActivity implements View.OnClickLis
 
         speak = (ToggleButton) findViewById(R.id.toggleButton_speak);
 
-        tts = new TextToSpeech(this, this);
+        tts = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int i) {
+                tts.setLanguage(Locale.UK);
+            }
+        });
     }
 
     @Override
@@ -62,14 +95,5 @@ public class SecondQuestion extends AppCompatActivity implements View.OnClickLis
         }
     }
 
-    @Override
-    public void onInit(int i) {
-        tts.setLanguage(Locale.UK);
-        tts.speak("Are you feeling fatigued?", i, null);
-    }
 
-    @Override
-    public void onPointerCaptureChanged(boolean hasCapture) {
-
-    }
 }

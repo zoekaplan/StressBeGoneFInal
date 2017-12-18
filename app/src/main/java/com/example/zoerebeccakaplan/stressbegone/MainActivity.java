@@ -43,6 +43,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     editor.putBoolean("hi", true);
                     editor.commit();
                 }
+                else {
+                    editor.putBoolean("hi", false);
+                    editor.commit();
+                }
             }
         });
     }
