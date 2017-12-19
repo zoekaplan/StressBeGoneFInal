@@ -28,6 +28,7 @@ public class FeelBetter extends AppCompatActivity implements View.OnClickListene
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_feel_better);
 
+
         wireWidgets();
         setOnCLickListeners();
 

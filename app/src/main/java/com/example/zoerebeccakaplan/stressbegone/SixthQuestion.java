@@ -44,7 +44,7 @@ public class SixthQuestion extends AppCompatActivity implements View.OnClickList
 
                 @Override
                 public void onFinish() {
-                    tts.speak("Do you have chest pain?",
+                    tts.speak("Have you eaten today?",
                             0, null);
                 }
             };
