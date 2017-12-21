@@ -40,11 +40,14 @@ public class FirstAnswer extends AppCompatActivity implements View.OnClickListen
         editor = sharedPref.edit();
 
         speak.setChecked(sharedPref.getBoolean("hi", false));
+
+    }
+
+    private void speak() {
         if(speak.isChecked()) {
             CountDownTimer c = new CountDownTimer(1000, 1000) {
                 @Override
                 public void onTick(long l) {
-
                 }
 
                 @Override
@@ -68,7 +71,6 @@ public class FirstAnswer extends AppCompatActivity implements View.OnClickListen
 
     private void answerOptions() {
         answerOpt = new ArrayList<Integer>();
-        answerOpt.add(R.drawable.breathe_answer);
         answerOpt.add(R.drawable.advil_answer);
 
     }
@@ -79,10 +81,9 @@ public class FirstAnswer extends AppCompatActivity implements View.OnClickListen
 
         speak.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    editor.putBoolean("hi", true);
+                    editor.putBoolean("hi", isChecked);
                     editor.commit();
-                }
+                    speak();
             }
         });
     }
@@ -108,10 +109,12 @@ public class FirstAnswer extends AppCompatActivity implements View.OnClickListen
             case R.id.imageView_no:
                 Intent i = new Intent(FirstAnswer.this, FeelBetter.class);
                 startActivity(i);
+                finish();
                 break;
             case R.id.imageView_yess:
                 i = new Intent(FirstAnswer.this, SecondQuestion.class);
                 startActivity(i);
+                finish();
                 break;
         }
 

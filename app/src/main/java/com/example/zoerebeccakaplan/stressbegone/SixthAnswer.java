@@ -36,6 +36,22 @@ public class SixthAnswer extends AppCompatActivity implements View.OnClickListen
         editor = sharedPref.edit();
 
         speak.setChecked(sharedPref.getBoolean("hi", false));
+    }
+
+    private void setOnClickListeners() {
+        yesButton.setOnClickListener(this);
+        noButton.setOnClickListener(this);
+
+        speak.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    editor.putBoolean("hi", isChecked);
+                    editor.commit();
+                    speak();
+            }
+        });
+    }
+
+    private void speak() {
         if(speak.isChecked()) {
             CountDownTimer c = new CountDownTimer(1000, 1000) {
                 @Override
@@ -51,20 +67,6 @@ public class SixthAnswer extends AppCompatActivity implements View.OnClickListen
             };
             c.start();
         }
-    }
-
-    private void setOnClickListeners() {
-        yesButton.setOnClickListener(this);
-        noButton.setOnClickListener(this);
-
-        speak.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    editor.putBoolean("hi", true);
-                    editor.commit();
-                }
-            }
-        });
     }
 
     private void wireWidgets() {
@@ -87,10 +89,12 @@ public class SixthAnswer extends AppCompatActivity implements View.OnClickListen
             case R.id.imageView_yes:
                 Intent i = new Intent(SixthAnswer.this, SeventhQuestion.class);
                 startActivity(i);
+                finish();
                 break;
             case R.id.imageView_no:
                 i = new Intent(SixthAnswer.this, FeelBetter.class);
                 startActivity(i);
+                finish();
                 break;
         }
     }

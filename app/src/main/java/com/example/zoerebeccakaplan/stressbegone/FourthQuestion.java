@@ -36,21 +36,6 @@ public class FourthQuestion extends AppCompatActivity implements View.OnClickLis
         editor = sharedPref.edit();
 
         speak.setChecked(sharedPref.getBoolean("hi", false));
-        if(speak.isChecked()) {
-            CountDownTimer c = new CountDownTimer(1000, 1000) {
-                @Override
-                public void onTick(long l) {
-
-                }
-
-                @Override
-                public void onFinish() {
-                    tts.speak("Is your stomach feeling upset?",
-                            0, null);
-                }
-            };
-            c.start();
-        }
     }
 
     private void wireWidgets() {
@@ -73,12 +58,29 @@ public class FourthQuestion extends AppCompatActivity implements View.OnClickLis
 
         speak.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    editor.putBoolean("hi", true);
+                    editor.putBoolean("hi", isChecked);
                     editor.commit();
-                }
+                    speak();
             }
         });
+    }
+
+    private void speak() {
+        if(speak.isChecked()) {
+            CountDownTimer c = new CountDownTimer(1000, 1000) {
+                @Override
+                public void onTick(long l) {
+
+                }
+
+                @Override
+                public void onFinish() {
+                    tts.speak("Is your stomach feeling upset?",
+                            0, null);
+                }
+            };
+            c.start();
+        }
     }
 
     @Override
@@ -87,10 +89,12 @@ public class FourthQuestion extends AppCompatActivity implements View.OnClickLis
             case R.id.imageView_yes:
                 Intent i = new Intent(FourthQuestion.this, FourthAnswer.class);
                 startActivity(i);
+                finish();
                 break;
             case R.id.imageView_no:
                 i = new Intent(FourthQuestion.this, FifthQuestion.class);
                 startActivity(i);
+                finish();
                 break;
         }
     }

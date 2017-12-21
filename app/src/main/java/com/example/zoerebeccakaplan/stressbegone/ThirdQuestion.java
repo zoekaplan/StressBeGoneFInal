@@ -38,21 +38,6 @@ public class ThirdQuestion extends AppCompatActivity implements View.OnClickList
         editor = sharedPref.edit();
 
         speak.setChecked(sharedPref.getBoolean("hi", false));
-        if(speak.isChecked()) {
-            CountDownTimer c = new CountDownTimer(1000, 1000) {
-                @Override
-                public void onTick(long l) {
-
-                }
-
-                @Override
-                public void onFinish() {
-                    tts.speak("Do you have chest pain?",
-                            0, null);
-                }
-            };
-            c.start();
-        }
     }
 
     private void wireWidgets() {
@@ -75,12 +60,29 @@ public class ThirdQuestion extends AppCompatActivity implements View.OnClickList
 
         speak.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    editor.putBoolean("hi", true);
+                    editor.putBoolean("hi", isChecked);
                     editor.commit();
-                }
+                    speak();
             }
         });
+    }
+
+    private void speak() {
+        if(speak.isChecked()) {
+            CountDownTimer c = new CountDownTimer(1000, 1000) {
+                @Override
+                public void onTick(long l) {
+
+                }
+
+                @Override
+                public void onFinish() {
+                    tts.speak("Do you have chest pain?",
+                            0, null);
+                }
+            };
+            c.start();
+        }
     }
 
 
@@ -90,10 +92,12 @@ public class ThirdQuestion extends AppCompatActivity implements View.OnClickList
             case R.id.imageView_yess:
                 Intent i = new Intent(ThirdQuestion.this, ThirdAnswer.class);
                 startActivity(i);
+                finish();
                 break;
             case R.id.imageView_noo:
                 i = new Intent(ThirdQuestion.this, FourthQuestion.class);
                 startActivity(i);
+                finish();
                 break;
         }
     }

@@ -37,26 +37,12 @@ public class FeelBetter extends AppCompatActivity implements View.OnClickListene
         editor = sharedPref.edit();
 
         speak.setChecked(sharedPref.getBoolean("hi", false));
-        if(speak.isChecked()) {
-            CountDownTimer c = new CountDownTimer(1000, 1000) {
-                @Override
-                public void onTick(long l) {
-
-                }
-
-                @Override
-                public void onFinish() {
-                    tts.speak("Feel Better!", 0, null);
-                }
-            };
-            c.start();
-        }
     }
 
     private void wireWidgets() {
         startOver = (Button) findViewById(R.id.button_start_over);
 
-        speak = (ToggleButton) findViewById(R.id.toggleButton_speech);
+        speak = (ToggleButton) findViewById(R.id.toggleButton_speak);
 
         tts = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
             @Override
@@ -72,10 +58,9 @@ public class FeelBetter extends AppCompatActivity implements View.OnClickListene
 
         speak.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    editor.putBoolean("hi", true);
+                    editor.putBoolean("hi", isChecked);
                     editor.commit();
-                }
+                    speak();
             }
         });
     }
@@ -84,6 +69,24 @@ public class FeelBetter extends AppCompatActivity implements View.OnClickListene
     public void onClick(View view) {
         Intent i = new Intent(FeelBetter.this, MainActivity.class);
         startActivity(i);
+        finish();
+    }
+
+    private void speak() {
+        if(speak.isChecked()) {
+            CountDownTimer c = new CountDownTimer(1000, 1000) {
+                @Override
+                public void onTick(long l) {
+
+                }
+
+                @Override
+                public void onFinish() {
+                    tts.speak("Hope you feel Better!", 0, null);
+                }
+            };
+            c.start();
+        }
     }
 
 }

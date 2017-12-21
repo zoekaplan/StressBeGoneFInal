@@ -31,6 +31,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         sharedPref = this.getSharedPreferences(
                 getString(R.string.preference_file_key), Context.MODE_PRIVATE);
         editor = sharedPref.edit();
+        editor.putBoolean("hi", false);
+        editor.commit();
     }
 
     private void setOnClickListeners() {
@@ -72,7 +74,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
        Intent i = new Intent(MainActivity.this, FirstQuestion.class);
         startActivity(i);
-
+        finish();
     }
 
 

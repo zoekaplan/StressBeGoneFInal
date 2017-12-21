@@ -36,6 +36,29 @@ public class FifthQuestion extends AppCompatActivity implements View.OnClickList
         editor = sharedPref.edit();
 
         speak.setChecked(sharedPref.getBoolean("hi", false));
+    }
+
+    private void setOnClickListeners() {
+        yesButton.setOnClickListener(this);
+        noButton.setOnClickListener(this);
+
+        speak.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                //if (isChecked) {
+                    editor.putBoolean("hi", isChecked);
+                    editor.commit();
+                    speak();
+                //}
+
+                //isChecked is true, set it to true
+                //isChecked is false, set it to false
+                //is there a variable that's true when you set it to true, and false when you set it to false? It starts with is
+
+            }
+        });
+    }
+
+    private void speak() {
         if(speak.isChecked()) {
             CountDownTimer c = new CountDownTimer(1000, 1000) {
                 @Override
@@ -51,20 +74,6 @@ public class FifthQuestion extends AppCompatActivity implements View.OnClickList
             };
             c.start();
         }
-    }
-
-    private void setOnClickListeners() {
-        yesButton.setOnClickListener(this);
-        noButton.setOnClickListener(this);
-
-        speak.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    editor.putBoolean("hi", true);
-                    editor.commit();
-                }
-            }
-        });
     }
 
     private void wireWidgets() {
@@ -87,10 +96,12 @@ public class FifthQuestion extends AppCompatActivity implements View.OnClickList
             case R.id.imageView_yes:
                 Intent i = new Intent(FifthQuestion.this, FifthAnswer.class);
                 startActivity(i);
+                finish();
                 break;
             case R.id.imageView_no:
                 i = new Intent(FifthQuestion.this, SixthQuestion.class);
                 startActivity(i);
+                finish();
                 break;
         }
     }

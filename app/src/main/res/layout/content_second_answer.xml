@@ -12,7 +12,7 @@
         android:id="@+id/button_click_here"
         android:layout_width="wrap_content"
         android:layout_height="51dp"
-        android:layout_marginBottom="164dp"
+        android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
@@ -21,10 +21,10 @@
         android:textStyle="italic"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.158"
+        app:layout_constraintHorizontal_bias="0.119"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.975" />
+        app:layout_constraintVertical_bias="0.632" />
 
     <ImageView
         android:id="@+id/imageView_zumba_video"
@@ -63,7 +63,7 @@
     <Button
         android:id="@+id/button_wait_click_here"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="51dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
@@ -73,10 +73,10 @@
         android:textStyle="italic"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.147"
+        app:layout_constraintHorizontal_bias="0.049"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.736" />
+        app:layout_constraintVertical_bias="0.781" />
 
     <ImageView
         android:id="@+id/imageView_other_symptoms"

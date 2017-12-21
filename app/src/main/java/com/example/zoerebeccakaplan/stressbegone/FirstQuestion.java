@@ -38,6 +38,11 @@ public class FirstQuestion extends AppCompatActivity implements View.OnClickList
         editor = sharedPref.edit();
 
         speak.setChecked(sharedPref.getBoolean("hi", false));
+
+
+    }
+
+    private void speak() {
         if(speak.isChecked()){
             CountDownTimer c = new CountDownTimer(1000,1000) {
                 @Override
@@ -53,8 +58,6 @@ public class FirstQuestion extends AppCompatActivity implements View.OnClickList
             c.start();
 
         }
-
-
     }
 
     private void wireWidgets() {
@@ -77,11 +80,9 @@ public class FirstQuestion extends AppCompatActivity implements View.OnClickList
 
         speak.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    editor.putBoolean("hi", true);
+                    editor.putBoolean("hi", isChecked);
                     editor.commit();
-                }
-
+                    speak();
             }
         });
     }
@@ -93,10 +94,12 @@ public class FirstQuestion extends AppCompatActivity implements View.OnClickList
             case R.id.imageView_no:
                 Intent i = new Intent(FirstQuestion.this, SecondQuestion.class);
                 startActivity(i);
+                finish();
                 break;
             case R.id.imageView_yess:
                 Intent x = new Intent(FirstQuestion.this, FirstAnswer.class);
                 startActivity(x);
+                finish();
                 break;
         }
     }

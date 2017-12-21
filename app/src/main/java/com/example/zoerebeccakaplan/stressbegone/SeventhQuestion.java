@@ -35,6 +35,21 @@ public class SeventhQuestion extends AppCompatActivity implements View.OnClickLi
         editor = sharedPref.edit();
 
         speak.setChecked(sharedPref.getBoolean("hi", false));
+    }
+
+    private void setOnClickListeners() {
+        next.setOnClickListener(this);
+
+        speak.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    editor.putBoolean("hi", isChecked);
+                    editor.commit();
+                    speak();
+            }
+        });
+    }
+
+    private void speak() {
         if(speak.isChecked()) {
             CountDownTimer c = new CountDownTimer(1000, 1000) {
                 @Override
@@ -55,19 +70,6 @@ public class SeventhQuestion extends AppCompatActivity implements View.OnClickLi
         }
     }
 
-    private void setOnClickListeners() {
-        next.setOnClickListener(this);
-
-        speak.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    editor.putBoolean("hi", true);
-                    editor.commit();
-                }
-            }
-        });
-    }
-
     private void wireWidgets() {
         next = (Button) findViewById(R.id.button_next);
 
@@ -83,11 +85,8 @@ public class SeventhQuestion extends AppCompatActivity implements View.OnClickLi
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
-            case R.id.button_next:
-                Intent i = new Intent(SeventhQuestion.this, FeelBetter.class);
-                startActivity(i);
-                break;
-        }
+        Intent i = new Intent(SeventhQuestion.this, FeelBetter.class);
+        startActivity(i);
+        finish();
     }
 }
